@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+      background-color: rgb(196, 250, 232);
+  }
+
+h1 {
+    text-align: center;
+    color: darkslategray;
+}
+p {
+    color:darkslategray ;
+    font-weight: bolder;
+}
+#attempts {
+    margin-left: 20px;
+    font-size: 30px;
+    color: rgb(22, 39, 39);
+  }
+div {
+  border: 2px solid black;
+  width: 1000px;
+  margin: 0 auto;
+  height: 300px;
+}
+img {
+    width: 30%;
+  padding: 2px;
+  height: 250px;
+  margin-top: 25px;
+  margin-left: 20px;
+}
