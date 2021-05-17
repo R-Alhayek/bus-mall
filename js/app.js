@@ -39,6 +39,9 @@ function renderImage(){
     }
     while (middleImgIndex === rightImgIndex){
         rightImgIndex = loadImage();
+    } 
+    while (leftImgIndex === rightImgIndex){
+        rightImgIndex = loadImage();
     }
 
     lImg.setAttribute('src', products[leftImgIndex].source);
@@ -88,5 +91,6 @@ function controlClicks(event){
         lImg.removeEventListener('click', controlClicks);
         mImg.removeEventListener('click', controlClicks);
         rImg.removeEventListener('click', controlClicks);
-
     }
+
+    
