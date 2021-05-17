@@ -8,10 +8,14 @@
 h1 {
     text-align: center;
     color: darkslategray;
+    font-size: 40px;
+    font-weight: bold;
+    padding: 10px;
 }
 p {
     color:darkslategray ;
     font-weight: bolder;
+    font-size: 18px;
 }
 #attempts {
     margin-left: 20px;
@@ -23,6 +27,7 @@ div {
   width: 1000px;
   margin: 0 auto;
   height: 300px;
+  margin-top: 30px;
 }
 img {
     width: 30%;
