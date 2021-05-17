@@ -3,13 +3,19 @@ let attempts = 0;
 let maxAttempts = 25;
 let attemptsEl = document.getElementById('attempts');
 let products = [];
+let productsImages = [];
+let productsVotes = [];
+let productsSeen = [];
+let imageSet = [];
+
 
 function productsImg(product){
-    this.product = product.split('.');
+    this.product = product.split('.')[0];
     this.source = 'images/' + product;
     this.click = 0;
     this.views =0;
     products.push(this);
+    productsImages.push(this.product);
 }
 
 let productImage = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg','water-can.jpg', 'wine-glass.jpg'];
@@ -34,15 +40,20 @@ function renderImage(){
     middleImgIndex = loadImage();
     rightImgIndex = loadImage();
 
-    while (leftImgIndex === middleImgIndex){
+    while (leftImgIndex === middleImgIndex || middleImgIndex === rightImgIndex || leftImgIndex === rightImgIndex || imageSet.includes(leftImgIndex) || imageSet.includes(middleImgIndex) || imageSet.includes(rightImgIndex)){
         middleImgIndex = loadImage();
-    }
-    while (middleImgIndex === rightImgIndex){
         rightImgIndex = loadImage();
-    } 
-    while (leftImgIndex === rightImgIndex){
-        rightImgIndex = loadImage();
+        leftImgIndex = loadImage();
+
+
     }
+    imageSet = [];
+    imageSet.push(leftImgIndex);
+    imageSet.push(middleImgIndex);
+    imageSet.push(rightImgIndex);
+    
+   
+
 
     lImg.setAttribute('src', products[leftImgIndex].source);
     lImg.setAttribute('title', products[leftImgIndex].source); 
@@ -58,6 +69,7 @@ function renderImage(){
     attemptsEl.textContent= attempts;
 }
 renderImage();
+
 
 lImg.addEventListener('click', controlClicks);
 mImg.addEventListener('click', controlClicks);
@@ -87,10 +99,57 @@ function controlClicks(event){
             liEl = document.createElement('li');
             ulEl.appendChild(liEl);
             liEl.textContent = `${products[i].product} had ${products[i].click} votes, and was seen ${products[i].views} times`
+            productsVotes.push(products[i].click);
+            productsSeen.push(products[i].views);
+
+
         }
         lImg.removeEventListener('click', controlClicks);
         mImg.removeEventListener('click', controlClicks);
         rImg.removeEventListener('click', controlClicks);
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: productsImages,
+        datasets: [{
+            label: '# of Votes',
+            data: productsVotes,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                
+            ],
+            borderWidth: 1
+        },{
+            label: '# of seen',
+            data: productsSeen,
+            backgroundColor: [
+                
+                'rgba(54, 162, 235, 0.2)',
+                
+            ],
+            borderColor: [
+                
+                'rgba(54, 162, 235, 1)',
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
     }
 
     
