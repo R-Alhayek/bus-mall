@@ -22,7 +22,7 @@ p {
     font-size: 30px;
     color: rgb(22, 39, 39);
   }
-div {
+#container {
   border: 2px solid black;
   width: 1000px;
   margin: 0 auto;
@@ -36,3 +36,14 @@ img {
   margin-top: 25px;
   margin-left: 20px;
 }
+#buttonEl {
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(204, 148, 204);
+  color: rgb(77, 75, 75);
+  font-weight: bold;
+  font-size: larger;
+  margin: 10px;
+  margin-bottom: 30px;
+}
+

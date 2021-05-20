@@ -199,7 +199,7 @@ var myChart = new Chart(ctx, {
 });
 
     }
-    console.log(attempts);
+    
 
         }
 
